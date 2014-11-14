@@ -1,0 +1,22 @@
+{
+  "name": "mqtt_server",
+  "description": "Receives mqtt messages and forwards them to the specified service.",
+  "version": "0.1.0",
+  "main": "lib/server.js",
+  "dependencies": {
+    "distribution": "robotoilet/distribution",
+    "mqtt": "~0.3.12",
+    "underscore": "~1.7.0",
+    "winston": "^0.8.1"
+  },
+  "devDependencies": {
+    "mocha": "~2.0.1",
+    "should": "~4.1.0"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "debug": "node-debug -p 8081 server.js",
+    "test": "mocha"
+  },
+  "license": "ISC"
+}
