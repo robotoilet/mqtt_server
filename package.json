@@ -14,8 +14,8 @@
     "should": "~4.1.0"
   },
   "scripts": {
-    "start": "node index.js",
-    "debug": "node-debug -p 8081 server.js",
+    "start": "node lib/server.js",
+    "debug": "node-debug -p 8081 lib/server.js",
     "test": "mocha",
     "test-debug": "node-debug -p 8081 _mocha"
   },
