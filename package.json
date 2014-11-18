@@ -16,7 +16,8 @@
   "scripts": {
     "start": "node index.js",
     "debug": "node-debug -p 8081 server.js",
-    "test": "mocha"
+    "test": "mocha",
+    "test-debug": "node-debug -p 8081 _mocha"
   },
   "license": "ISC"
 }
