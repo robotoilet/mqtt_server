@@ -2,6 +2,7 @@ var should = require('should')
   , _ = require('underscore')
   , mqtt = require('mqtt')
   , logger = require('../lib/logger')
+  , md5 = require('MD5')
   , server = require('../lib/server');
 
 
@@ -14,7 +15,7 @@ describe('incoming_mqtt', function() {
     var site = 'siteX';
 
     // overwrite the default distribute function as a mock
-    server.distribute = function(auth, dataString, callback) {
+    server.distribute = function(auth, dataString, error, success) {
       auth.should.eql(
         { id: punter + '_' + site,
           username: punter,
@@ -22,9 +23,9 @@ describe('incoming_mqtt', function() {
         }
       );
       dataString.should.equal(msg);
-      callback.should.eql(logger.error);
+      error.should.eql(logger.error);
+      success("Server called success!"); // we check success listening for a message further below
       server.close();
-      done();
     };
     server.listen(1884)
 
@@ -33,8 +34,14 @@ describe('incoming_mqtt', function() {
       username: punter,
       password: punter
     });
-    client.publish('unimportant_tag', msg);
-    client.end();
+    var md5sum = md5(msg);
+    client.on('message', function(toppic, message) {
+      toppic.should.equal('verifiedData');
+      message.should.equal(md5sum);
+      client.end();
+      done();
+    });
+    client.publish(md5sum, msg);
   });
 
 
