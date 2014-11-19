@@ -5,6 +5,7 @@
   "main": "lib/server.js",
   "dependencies": {
     "distribution": "robotoilet/distribution",
+    "iol_conf": "robotoilet/iol_conf",
     "mqtt": "~0.3.12",
     "underscore": "~1.7.0",
     "winston": "^0.8.1"
