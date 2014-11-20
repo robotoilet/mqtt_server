@@ -9,3 +9,6 @@ node_modules
 
 # local .vagrant dir
 .vagrant
+
+# local config that overwrites global settings
+config.js
