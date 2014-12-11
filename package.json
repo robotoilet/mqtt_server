@@ -12,7 +12,6 @@
     "winston": "^0.8.1"
   },
   "devDependencies": {
-    "MD5": "~1.2.1",
     "mocha": "~2.0.1",
     "should": "~4.1.0"
   },

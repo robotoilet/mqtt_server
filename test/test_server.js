@@ -1,8 +1,8 @@
 var should = require('should')
   , _ = require('underscore')
   , mqtt = require('mqtt')
+  , utils = require('data-utils')
   , logger = require('../lib/logger')
-  , md5 = require('MD5')
   , server = require('../lib/server');
 
 
@@ -34,14 +34,14 @@ describe('incoming_mqtt', function() {
       username: punter,
       password: punter
     });
-    var md5sum = md5(msg);
+    var checksum = utils.checkchecksum(msg);
     client.on('message', function(toppic, message) {
       toppic.should.equal('verifiedData');
-      message.should.equal(md5sum);
+      message.should.equal(checksum);
       client.end();
       done();
     });
-    client.publish(md5sum, msg);
+    client.publish(checksum, msg);
   });
 
 
