@@ -1,9 +1,9 @@
-var should = require('should')
-  , _ = require('underscore')
-  , mqtt = require('mqtt')
-  , utils = require('data-utils')
-  , logger = require('../lib/logger')
-  , server = require('../lib/server');
+var should = require('should'),
+    _ = require('underscore'),
+    mqtt = require('mqtt'),
+    utils = require('data-utils'),
+    logger = require('../lib/logger'),
+    server = require('../lib/server');
 
 
 describe('incoming_mqtt', function() {
@@ -27,7 +27,7 @@ describe('incoming_mqtt', function() {
       success("Server called success!"); // we check success listening for a message further below
       server.close();
     };
-    server.listen(1884)
+    server.listen(1884);
 
     client = mqtt.createClient(1884, 'localhost', {
       clientId: site,
@@ -43,6 +43,5 @@ describe('incoming_mqtt', function() {
     });
     client.publish(checksum, msg);
   });
-
 
 });
